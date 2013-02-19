@@ -15,21 +15,19 @@ my $board = [
     [qw(gr bp bc br bs bc pb gp)],
 ];
 
-#print isValidNeighbor($$board[0][0], $$board[1][1]), "\n";
+#print is_valid_neighbor($$board[0][0], $$board[1][1]), "\n";
 
-print Dumper( getValidNeigbors(0,7) );
+print Dumper( get_valid_neighbors(0,7) );
 
 
-sub getValidNeigbors {
+sub get_valid_neighbors {
     my ($row,$column) = @_;
-    my $allNeighbors = getAllNeighbors($row, $column);
+    my $allNeighbors = get_all_neighbors($row, $column);
 
     return $allNeighbors;
 }
 
-# (i,j), neighbours are of course (i-1,j), (i-1,j-1), (i,j-1)
-# (0,0) - ()
-sub getAllNeighbors {
+sub get_all_neighbors {
     my ($row,$column) = @_;
     my $total_rows    = scalar @$board;
     my $total_columns = scalar(@{$$board[0]});
@@ -76,7 +74,7 @@ sub getAllNeighbors {
 }
 
 # each point is string from the board - not a (row,column)
-sub isValidNeighbor {
+sub is_valid_neighbor {
     my ($point_one, $point_two) = @_;
 
     my ($p1k1, $p1k2) = split('', $point_one);
