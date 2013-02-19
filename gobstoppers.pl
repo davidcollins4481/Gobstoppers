@@ -3,6 +3,7 @@ use strict;
 use Data::Dumper;
 
 # $$board[row][column]
+# 7 x 7
 my $board = [
     [qw(ps rr gb gc yp ys rp yb)],
     [qw(gs rp pr pc gr pp rs bp)],
@@ -37,19 +38,19 @@ sub getAllNeighbors {
 
     # top
     push(@$neighbors, [$row - 1, $column])
-        if $row > 0 && $row < $total_rows;
+        if $row > 0;
 
     # left
     push(@$neighbors, [$row, $column - 1])
-        if $column > 0 && $column < $total_columns;
+        if $column > 0;
 
     # bottom
     push(@$neighbors, [$row + 1, $column])
-        if $row < $total_rows;
+        if $row < $total_rows - 1;
 
     # right
     push(@$neighbors, [$row, $column + 1])
-        if $column < $total_columns;
+        if $column < $total_columns - 1;
 
     # diagonal neighbors
     ####################
@@ -60,15 +61,15 @@ sub getAllNeighbors {
 
     # lower left
     push(@$neighbors, [$row + 1, $column - 1])
-        if $row < $total_rows && $column > 0;
+        if $row < $total_rows - 1 && $column > 0;
 
     # lower right
     push(@$neighbors, [$row + 1, $column + 1])
-        if $row < $total_rows && $column < $total_columns;
+        if $row < $total_rows - 1 && $column < $total_columns - 1;
 
     # upper right
     push(@$neighbors, [$row - 1, $column + 1])
-        if $row > 0 && $column < $total_columns;
+        if $row > 0 && $column < $total_columns - 1;
 
     return $neighbors;
 
