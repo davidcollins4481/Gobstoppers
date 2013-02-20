@@ -17,14 +17,19 @@ my $board = [
 
 #print is_valid_neighbor($$board[0][0], $$board[1][1]), "\n";
 
-print Dumper( get_valid_neighbors(0,7) );
+print Dumper( get_valid_neighbors(0,1) );
 
 
 sub get_valid_neighbors {
     my ($row,$column) = @_;
-    my $allNeighbors = get_all_neighbors($row, $column);
+    my $all_neighbors = get_all_neighbors($row, $column);
 
-    return $allNeighbors;
+    my $point_to_check = $$board[$row][$column];
+    my $valid_neighbors = [ grep {
+        is_valid_neighbor($point_to_check, $$board[ $$_[0] ][ $$_[1] ])
+    } @$all_neighbors ];
+
+    return $valid_neighbors;
 }
 
 sub get_all_neighbors {
